@@ -1,11 +1,49 @@
 <wm-page name="mainpage" pagetitle="Main">
-    <wm-header content="header" name="header" height="auto"></wm-header>
+    <wm-header name="header" content="header" height="auto"></wm-header>
     <wm-top-nav name="topnav" content="topnav"></wm-top-nav>
     <wm-content name="content">
-        <wm-left-panel columnwidth="2" name="leftpanel" content="leftnav"></wm-left-panel>
-        <wm-page-content columnwidth="8" paddingleft="15" paddingright="15" name="mainContent">
+        <wm-left-panel name="leftpanel" content="leftnav" columnwidth="2"></wm-left-panel>
+        <wm-page-content name="mainContent" columnwidth="8" padding="unset 15px">
+            <wm-livetable name="UserLiveTable1" formlayout="dialog">
+                <wm-table title="User List" navigation="Basic" name="UserTable1" dataset="bind:Variables.HrdbUserData.dataSet" editmode="dialog" gridfirstrowselect="true">
+                    <wm-table-column type="integer" readonly="true" caption="User Id" primary-key="true" mobiledisplay="true" pcdisplay="true" generator="identity" binding="userId"></wm-table-column>
+                    <wm-table-column type="string" caption="Username" mobiledisplay="true" pcdisplay="true" generator="assigned" binding="username"></wm-table-column>
+                    <wm-table-column type="string" caption="Password" mobiledisplay="true" pcdisplay="true" generator="assigned" binding="password"></wm-table-column>
+                    <wm-table-column type="string" caption="Role" mobiledisplay="true" pcdisplay="true" generator="assigned" binding="role"></wm-table-column>
+                    <wm-table-column type="integer" caption="Tenant Id" mobiledisplay="true" pcdisplay="true" generator="assigned" binding="tenantId"></wm-table-column>
+                    <wm-table-action class="btn-primary" show="true" iconclass="wi wi-plus" position="footer" widget-type="button" key="addNewRow" display-name="New" action="addNewRow()" shortcutkey=""></wm-table-action>
+                    <wm-table-row-action title="Edit" class="btn-transparent" show="true" iconclass="wi wi-pencil" key="updaterow" display-name="" action="editRow($event)"></wm-table-row-action>
+                    <wm-table-row-action title="Delete" class="btn-transparent" show="true" iconclass="wi wi-trash" key="deleterow" display-name="" action="deleteRow($event)"></wm-table-row-action>
+                </wm-table>
+                <wm-liveform title="User Info" name="UserLiveForm1" captionposition="top" iconclass="wi wi-edit" dataset="bind:Variables.HrdbUserData.dataSet" formlayout="dialog" errormessage="" captionalign="left">
+                    <wm-layoutgrid name="layoutgrid1" columns="3">
+                        <wm-gridrow name="gridrow1">
+                            <wm-gridcolumn name="gridcolumn1" columnwidth="4">
+                                <wm-form-field type="string" widget="text" displayname="Username" required="false" name="username" show="true" key="username" primary-key="false" generator="assigned" mobile-display="true" pc-display="true" maxchars="20" is-related="false"></wm-form-field>
+                            </wm-gridcolumn>
+                            <wm-gridcolumn name="gridcolumn2" columnwidth="4">
+                                <wm-form-field type="string" widget="text" displayname="Password" required="false" name="password" show="true" key="password" primary-key="false" generator="assigned" mobile-display="true" pc-display="true" maxchars="20" is-related="false"></wm-form-field>
+                            </wm-gridcolumn>
+                            <wm-gridcolumn name="gridcolumn3" columnwidth="4">
+                                <wm-form-field type="string" widget="text" displayname="Role" required="false" name="role" show="true" key="role" primary-key="false" generator="assigned" mobile-display="true" pc-display="true" maxchars="20" is-related="false"></wm-form-field>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow2">
+                            <wm-gridcolumn name="gridcolumn4" columnwidth="4">
+                                <wm-form-field type="integer" widget="number" displayname="Tenant Id" required="false" name="tenantId" show="true" key="tenantId" primary-key="false" generator="assigned" mobile-display="true" pc-display="true" is-related="false"
+                                    step="0"></wm-form-field>
+                            </wm-gridcolumn>
+                            <wm-gridcolumn name="gridcolumn5" columnwidth="4"></wm-gridcolumn>
+                            <wm-gridcolumn name="gridcolumn6" columnwidth="4"></wm-gridcolumn>
+                        </wm-gridrow>
+                    </wm-layoutgrid>
+                    <wm-form-field type="integer" widget="number" displayname="User Id" required="true" name="userId" show="false" key="userId" primary-key="true" generator="identity" mobile-display="true" pc-display="true" is-related="false" step="0"></wm-form-field>
+                    <wm-form-action class="form-cancel btn-secondary" type="button" show="true" iconclass="wi wi-cancel" key="cancel" display-name="Cancel" action="cancel()" update-mode="true"></wm-form-action>
+                    <wm-form-action class="form-save btn-success" type="submit" show="true" iconclass="wi wi-save" key="save" display-name="Save" update-mode="true"></wm-form-action>
+                </wm-liveform>
+            </wm-livetable>
         </wm-page-content>
-        <wm-right-panel columnwidth="2" name="rightpanel" content="rightnav"></wm-right-panel>
+        <wm-right-panel name="rightpanel" content="rightnav" columnwidth="2"></wm-right-panel>
     </wm-content>
     <wm-footer name="footer" content="footer"></wm-footer>
 </wm-page>
